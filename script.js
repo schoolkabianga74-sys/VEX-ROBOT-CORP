@@ -83,11 +83,13 @@ contactForm.addEventListener('submit', (e) => {
     }, 2000);
 });
 
-// Active Navigation Link on Scroll
+// Consolidated scroll event handler for better performance
+const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
     const scrollY = window.pageYOffset;
     
+    // Update active navigation link
+    const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 100;
@@ -101,12 +103,9 @@ window.addEventListener('scroll', () => {
             }
         }
     });
-});
-
-// Add scroll-based navbar background
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    
+    // Update navbar background on scroll
+    if (scrollY > 50) {
         navbar.style.backgroundColor = 'rgba(26, 26, 46, 0.98)';
     } else {
         navbar.style.backgroundColor = 'var(--dark-color)';
